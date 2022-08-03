@@ -31,4 +31,4 @@ function displayLibrary(){
         sidebar.appendChild(game);
     }
 }
-addBookToLibrary()
+addGameToLibrary()
