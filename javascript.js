@@ -27,8 +27,17 @@ function addGameToLibrary(){
 function displayLibrary(){
     for(let i=0;i<(myLibrary.length);i++){
         const game = document.createElement('div');
-        game.textContent= myLibrary[i].title;
+        game.className="game";
+        const info = document.createElement("p");
+        info.innerText=`Title: ${myLibrary[i].title}\nDeveloper: ${myLibrary[i].developer}\nHours Played: ${myLibrary[i].hours}\nCompleted: ${myLibrary[i].completed}`;
+        game.appendChild(info)
         sidebar.appendChild(game);
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "delete";
+        game.appendChild(deleteButton)
+        const completedButton = document.createElement('button')
+        completedButton.textContent="completed";
+        game.appendChild(completedButton);
     }
 }
 addGameToLibrary()
