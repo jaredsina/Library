@@ -1,5 +1,5 @@
 
-const sidebar = document.querySelector(".sidebar");
+const main = document.querySelector(".main");
 let myLibrary = [];
 
 function Game(title, developer, hours, completed){
@@ -31,7 +31,7 @@ function displayLibrary(){
         const info = document.createElement("p");
         info.innerText=`Title: ${myLibrary[i].title}\nDeveloper: ${myLibrary[i].developer}\nHours Played: ${myLibrary[i].hours}\nCompleted: ${myLibrary[i].completed}`;
         game.appendChild(info)
-        sidebar.appendChild(game);
+        main.appendChild(game);
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "delete";
         game.appendChild(deleteButton)
