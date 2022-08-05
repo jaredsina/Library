@@ -22,7 +22,15 @@ function addGameToLibrary(){
         let answer=prompt("New Game? y/n");
         answer === "y" ? add = true : add = false;
     }
+    
     displayLibrary();
+}
+function deleteBook(index){
+    let remove = prompt("Are you sure want to delete this book? y/n")
+    if (remove==="y"){
+        myLibrary.splice(index,1)
+    }
+    console.log(myLibrary)
 }
 function displayLibrary(){
     for(let i=0;i<(myLibrary.length);i++){
@@ -34,10 +42,13 @@ function displayLibrary(){
         sidebar.appendChild(game);
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "delete";
+        deleteButton.setAttribute("onclick",`deleteBook(${i})`);
         game.appendChild(deleteButton)
         const completedButton = document.createElement('button')
         completedButton.textContent="completed";
         game.appendChild(completedButton);
     }
 }
+
+
 addGameToLibrary()
