@@ -25,7 +25,7 @@ function addGameToLibrary(){
     
     displayLibrary();
 }
-function deleteBook(gameTitle){
+function deleteGame(gameTitle){
     let index = myLibrary.findIndex(x=>x.title===gameTitle);
     let remove = prompt("Are you sure want to delete this book? y/n")
     if (remove==="y"){
@@ -46,7 +46,7 @@ function displayLibrary(){
         main.appendChild(game);
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "delete";
-        deleteButton.setAttribute("onclick",`deleteBook("${myLibrary[i].title}")`);
+        deleteButton.setAttribute("onclick",`deleteGame("${myLibrary[i].title}")`);
         game.appendChild(deleteButton)
         const completedButton = document.createElement('button')
         completedButton.textContent="completed";
