@@ -16,6 +16,7 @@ function addGameToLibrary(){
         let developer = prompt("Enter the developer: ");
         let hours = prompt("How many hours have you played: ");
         let completed = prompt("Completed: ");
+        completed = completed == "true";
         let newGame = new Game(title,developer,hours,completed);
         myLibrary.push(newGame);
         console.log(myLibrary);
@@ -29,9 +30,9 @@ function deleteGame(gameTitle){
     let index = myLibrary.findIndex(x=>x.title===gameTitle);
     let remove = prompt("Are you sure want to delete this book? y/n")
     if (remove==="y"){
-        myLibrary.splice(index,1)
-        const deletedGame = document.getElementById(gameTitle)
-        main.removeChild(deletedGame)
+        myLibrary.splice(index,1);
+        const deletedGame = document.getElementById(gameTitle);
+        main.removeChild(deletedGame);
     }
     console.log(myLibrary)
 }
@@ -41,18 +42,30 @@ function displayLibrary(){
         game.className="game";
         game.id=`${myLibrary[i].title}`
         const info = document.createElement("p");
+        info.id=`p ${myLibrary[i].title}`
         info.innerText=`Title: ${myLibrary[i].title}\nDeveloper: ${myLibrary[i].developer}\nHours Played: ${myLibrary[i].hours}\nCompleted: ${myLibrary[i].completed}`;
         game.appendChild(info)
         main.appendChild(game);
         const deleteButton = document.createElement('button');
         deleteButton.textContent = "delete";
         deleteButton.setAttribute("onclick",`deleteGame("${myLibrary[i].title}")`);
-        game.appendChild(deleteButton)
-        const completedButton = document.createElement('button')
+        game.appendChild(deleteButton);
+        const completedButton = document.createElement('button');
         completedButton.textContent="completed";
+        completedButton.setAttribute("onclick",`setCompletedStatus("${myLibrary[i].title}")`);
         game.appendChild(completedButton);
     }
 }
-
+function setCompletedStatus(gameTitle){
+    let index = myLibrary.findIndex(x=>x.title===gameTitle);
+    if (myLibrary[index].completed ===true){
+        myLibrary[index].completed =false;
+    }else{
+        myLibrary[index].completed =true;
+    }
+    const gameInfo = document.getElementById(`p ${gameTitle}`)
+    gameInfo.innerText=`Title: ${myLibrary[index].title}\nDeveloper: ${myLibrary[index].developer}\nHours Played: ${myLibrary[index].hours}\nCompleted: ${myLibrary[index].completed}`;
+    console.log(myLibrary)
+}
 
 addGameToLibrary()
