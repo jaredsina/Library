@@ -30,6 +30,8 @@ function deleteBook(gameTitle){
     let remove = prompt("Are you sure want to delete this book? y/n")
     if (remove==="y"){
         myLibrary.splice(index,1)
+        const deletedGame = document.getElementById(gameTitle)
+        main.removeChild(deletedGame)
     }
     console.log(myLibrary)
 }
@@ -37,6 +39,7 @@ function displayLibrary(){
     for(let i=0;i<(myLibrary.length);i++){
         const game = document.createElement('div');
         game.className="game";
+        game.id=`${myLibrary[i].title}`
         const info = document.createElement("p");
         info.innerText=`Title: ${myLibrary[i].title}\nDeveloper: ${myLibrary[i].developer}\nHours Played: ${myLibrary[i].hours}\nCompleted: ${myLibrary[i].completed}`;
         game.appendChild(info)
