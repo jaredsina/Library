@@ -63,9 +63,87 @@ function setCompletedStatus(gameTitle){
     }else{
         myLibrary[index].completed =true;
     }
-    const gameInfo = document.getElementById(`p ${gameTitle}`)
+    const gameInfo = document.getElementById(`p ${gameTitle}`);
     gameInfo.innerText=`Title: ${myLibrary[index].title}\nDeveloper: ${myLibrary[index].developer}\nHours Played: ${myLibrary[index].hours}\nCompleted: ${myLibrary[index].completed}`;
-    console.log(myLibrary)
+    console.log(myLibrary);
 }
+function displayForm(){
+    //Where to add form
+    const formSpot = document.querySelector(".form-location");
 
+    //Create form element
+    const form = document.createElement("form");
+    form.setAttribute("id","new-game-form");
+
+    //Create input for title property
+    const title = document.createElement("input");
+    title.setAttribute("type","text");
+    title.setAttribute("id","title");
+    title.setAttribute("name","title");
+    title.setAttribute("required","");
+
+    //Create label for title input
+    const titleLabel = document.createElement("label");
+    titleLabel.innerText= "Title:";
+    titleLabel.setAttribute("for","title");
+
+    //Create input for developer property
+    const developer = document.createElement("input");
+    developer.setAttribute("type","text");
+    developer.setAttribute("id","developer");
+    developer.setAttribute("name","developer");
+    developer.setAttribute("required","");
+
+    //Create label for developer input
+    const developerLabel = document.createElement("label");
+    developerLabel.innerText = "Developer:";
+    developerLabel.setAttribute("for","developer");
+
+    //Create input for hours played property
+    const hours = document.createElement("input");
+    hours.setAttribute("type","number");
+    hours.setAttribute("id","hours");
+    hours.setAttribute("name","hours");
+    hours.setAttribute("required","");
+
+    //Create label for hours input
+    const hoursLabel = document.createElement("label");
+    hoursLabel.innerText="Hours Played:";
+    hoursLabel.setAttribute("for","hours");
+
+    //Create input for completed property
+    const completed = document.createElement("input");
+    completed.setAttribute("type","checkbox");
+    completed.setAttribute("id","completed");
+    completed.setAttribute("name","completed");
+    completed.setAttribute("required","")
+
+    //Create label for completed input
+    const completedLabel = document.createElement("label");
+    completedLabel.innerText="Completed?";
+    completedLabel.setAttribute("for","developer");
+
+    //Create submit button
+    const submitButton = document.createElement("button");
+    submitButton.innerText="Create"
+    submitButton.setAttribute("type","submit")
+
+    //Create cancel operation button
+    const cancelButton = document.createElement("button");
+    cancelButton.innerText="Cancel"
+
+    //Append all form elements to proper locations
+    formSpot.appendChild(form);
+    form.appendChild(titleLabel);
+    form.appendChild(title);
+    form.appendChild(developerLabel);
+    form.appendChild(developer);
+    form.appendChild(hoursLabel);
+    form.appendChild(hours);
+    form.appendChild(completedLabel);
+    form.appendChild(completed);
+    form.appendChild(submitButton);
+    form.appendChild(cancelButton);
+    
+}
 addGameToLibrary()
