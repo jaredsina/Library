@@ -135,6 +135,7 @@ function displayForm(){
     cancelButton.innerText="Cancel";
     cancelButton.setAttribute("type","button");
     cancelButton.setAttribute("value","cancel");
+    cancelButton.setAttribute("onclick","cancelForm()");
 
 
     //Append all form elements to proper locations
@@ -160,4 +161,10 @@ function checkForm(){
         }
     }
     console.log("Nice Job Filling Out the Form")
+}
+
+function cancelForm(){
+    const formLoc = document.querySelector(".form-location");
+    const form = document.getElementById("new-game-form");
+    formLoc.removeChild(form);
 }
