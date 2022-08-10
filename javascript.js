@@ -124,13 +124,18 @@ function displayForm(){
     completedLabel.setAttribute("for","developer");
 
     //Create submit button
-    const submitButton = document.createElement("button");
-    submitButton.innerText="Create"
-    submitButton.setAttribute("type","submit")
+    const submitButton = document.createElement("input");
+    submitButton.innerText="Create";
+    submitButton.setAttribute("value","create");
+    submitButton.setAttribute("type","button");
+    submitButton.setAttribute("onclick",`checkForm()`);
 
     //Create cancel operation button
-    const cancelButton = document.createElement("button");
-    cancelButton.innerText="Cancel"
+    const cancelButton = document.createElement("input");
+    cancelButton.innerText="Cancel";
+    cancelButton.setAttribute("type","button");
+    cancelButton.setAttribute("value","cancel");
+
 
     //Append all form elements to proper locations
     formSpot.appendChild(form);
@@ -146,4 +151,13 @@ function displayForm(){
     form.appendChild(cancelButton);
     
 }
-addGameToLibrary()
+
+function checkForm(){
+    const form = document.getElementById("new-game-form");
+    for(let i=0;i<=form.length-4;i++){
+        if (!form[i].value){
+            return
+        }
+    }
+    console.log("Nice Job Filling Out the Form")
+}
