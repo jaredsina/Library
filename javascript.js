@@ -68,9 +68,15 @@ function setCompletedStatus(gameTitle){
     console.log(myLibrary);
 }
 function displayForm(){
+    
     //Where to add form
     const formSpot = document.querySelector(".form-location");
 
+    //Check if new game is already being added
+    if (formSpot.childElementCount>0){
+        return
+    }
+    
     //Create form element
     const form = document.createElement("form");
     form.setAttribute("id","new-game-form");
