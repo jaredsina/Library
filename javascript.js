@@ -10,22 +10,20 @@ function Game(title, developer, hours, completed){
 }
 
 function addGameToLibrary(){
-    let add = true;
-    while(add==true){
-        let title= prompt("Enter a game title: ");
-        let developer = prompt("Enter the developer: ");
-        let hours = prompt("How many hours have you played: ");
-        let completed = prompt("Completed: ");
-        completed = completed == "true";
-        let newGame = new Game(title,developer,hours,completed);
-        myLibrary.push(newGame);
-        console.log(myLibrary);
-        let answer=prompt("New Game? y/n");
-        answer === "y" ? add = true : add = false;
-    }
-    
+    const form = document.getElementById("new-game-form");
+    const title = form[0].value;
+    const developer = form[1].value;
+    const hours = form[2].value;
+    let completed=form[3].value;
+    console.log(completed)
+    completed = completed == "true";
+    let newGame = new Game(title,developer,hours,completed);
+    myLibrary.push(newGame);
+    console.log(myLibrary); 
+    hideForm();   
     displayLibrary();
 }
+
 function deleteGame(gameTitle){
     let index = myLibrary.findIndex(x=>x.title===gameTitle);
     let remove = prompt("Are you sure want to delete this book? y/n")
@@ -36,6 +34,7 @@ function deleteGame(gameTitle){
     }
     console.log(myLibrary)
 }
+
 function displayLibrary(){
     for(let i=0;i<(myLibrary.length);i++){
         const game = document.createElement('div');
@@ -56,6 +55,7 @@ function displayLibrary(){
         game.appendChild(completedButton);
     }
 }
+
 function setCompletedStatus(gameTitle){
     let index = myLibrary.findIndex(x=>x.title===gameTitle);
     if (myLibrary[index].completed ===true){
@@ -67,6 +67,7 @@ function setCompletedStatus(gameTitle){
     gameInfo.innerText=`Title: ${myLibrary[index].title}\nDeveloper: ${myLibrary[index].developer}\nHours Played: ${myLibrary[index].hours}\nCompleted: ${myLibrary[index].completed}`;
     console.log(myLibrary);
 }
+
 function displayForm(){
     
     //Where to add form
@@ -76,7 +77,7 @@ function displayForm(){
     if (formSpot.childElementCount>0){
         return
     }
-    
+
     //Create form element
     const form = document.createElement("form");
     form.setAttribute("id","new-game-form");
@@ -86,7 +87,6 @@ function displayForm(){
     title.setAttribute("type","text");
     title.setAttribute("id","title");
     title.setAttribute("name","title");
-    title.setAttribute("required","");
 
     //Create label for title input
     const titleLabel = document.createElement("label");
@@ -98,7 +98,6 @@ function displayForm(){
     developer.setAttribute("type","text");
     developer.setAttribute("id","developer");
     developer.setAttribute("name","developer");
-    developer.setAttribute("required","");
 
     //Create label for developer input
     const developerLabel = document.createElement("label");
@@ -110,7 +109,6 @@ function displayForm(){
     hours.setAttribute("type","number");
     hours.setAttribute("id","hours");
     hours.setAttribute("name","hours");
-    hours.setAttribute("required","");
 
     //Create label for hours input
     const hoursLabel = document.createElement("label");
@@ -122,7 +120,7 @@ function displayForm(){
     completed.setAttribute("type","checkbox");
     completed.setAttribute("id","completed");
     completed.setAttribute("name","completed");
-    completed.setAttribute("required","")
+    completed.setAttribute("value","true");
 
     //Create label for completed input
     const completedLabel = document.createElement("label");
@@ -141,7 +139,7 @@ function displayForm(){
     cancelButton.innerText="Cancel";
     cancelButton.setAttribute("type","button");
     cancelButton.setAttribute("value","cancel");
-    cancelButton.setAttribute("onclick","cancelForm()");
+    cancelButton.setAttribute("onclick","hideForm()");
 
 
     //Append all form elements to proper locations
@@ -166,10 +164,10 @@ function checkForm(){
             return
         }
     }
-    console.log("Nice Job Filling Out the Form")
+    addGameToLibrary();
 }
 
-function cancelForm(){
+function hideForm(){
     const formLoc = document.querySelector(".form-location");
     const form = document.getElementById("new-game-form");
     formLoc.removeChild(form);
