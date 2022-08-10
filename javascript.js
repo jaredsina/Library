@@ -14,9 +14,8 @@ function addGameToLibrary(){
     const title = form[0].value;
     const developer = form[1].value;
     const hours = form[2].value;
-    let completed=form[3].value;
+    let completed=form[3].checked;
     console.log(completed)
-    completed = completed == "true";
     let newGame = new Game(title,developer,hours,completed);
     myLibrary.push(newGame);
     console.log(myLibrary); 
@@ -117,10 +116,9 @@ function displayForm(){
 
     //Create input for completed property
     const completed = document.createElement("input");
-    completed.setAttribute("type","checkbox");
+    completed.setAttribute("type","radio");
     completed.setAttribute("id","completed");
     completed.setAttribute("name","completed");
-    completed.setAttribute("value","true");
 
     //Create label for completed input
     const completedLabel = document.createElement("label");
