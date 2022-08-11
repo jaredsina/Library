@@ -17,7 +17,7 @@ function addGameToLibrary(){
     let completed=form[3].checked;
     console.log(completed)
     let newGame = new Game(title,developer,hours,completed);
-    myLibrary.push(newGame);
+    myLibrary.unshift(newGame);
     console.log(myLibrary); 
     hideForm();   
     displayLibrary();
@@ -35,24 +35,23 @@ function deleteGame(gameTitle){
 }
 
 function displayLibrary(){
-    for(let i=0;i<(myLibrary.length);i++){
-        const game = document.createElement('div');
-        game.className="game";
-        game.id=`${myLibrary[i].title}`
-        const info = document.createElement("p");
-        info.id=`p ${myLibrary[i].title}`
-        info.innerText=`Title: ${myLibrary[i].title}\nDeveloper: ${myLibrary[i].developer}\nHours Played: ${myLibrary[i].hours}\nCompleted: ${myLibrary[i].completed}`;
-        game.appendChild(info)
-        main.appendChild(game);
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = "delete";
-        deleteButton.setAttribute("onclick",`deleteGame("${myLibrary[i].title}")`);
-        game.appendChild(deleteButton);
-        const completedButton = document.createElement('button');
-        completedButton.textContent="completed";
-        completedButton.setAttribute("onclick",`setCompletedStatus("${myLibrary[i].title}")`);
-        game.appendChild(completedButton);
-    }
+    const game = document.createElement('div');
+    game.className="game";
+    game.id=`${myLibrary[0].title}`
+    const info = document.createElement("p");
+    info.id=`p ${myLibrary[0].title}`
+    info.innerText=`Title: ${myLibrary[0].title}\nDeveloper: ${myLibrary[0].developer}\nHours Played: ${myLibrary[0].hours}\nCompleted: ${myLibrary[0].completed}`;
+    game.appendChild(info)
+    main.appendChild(game);
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "delete";
+    deleteButton.setAttribute("onclick",`deleteGame("${myLibrary[0].title}")`);
+    game.appendChild(deleteButton);
+    const completedButton = document.createElement('button');
+    completedButton.textContent="completed";
+    completedButton.setAttribute("onclick",`setCompletedStatus("${myLibrary[0].title}")`);
+    game.appendChild(completedButton);
+    
 }
 
 function setCompletedStatus(gameTitle){
@@ -139,7 +138,6 @@ function displayForm(){
     cancelButton.setAttribute("value","cancel");
     cancelButton.setAttribute("onclick","hideForm()");
 
-
     //Append all form elements to proper locations
     formSpot.appendChild(form);
     form.appendChild(titleLabel);
@@ -152,7 +150,6 @@ function displayForm(){
     form.appendChild(completed);
     form.appendChild(submitButton);
     form.appendChild(cancelButton);
-    
 }
 
 function checkForm(){
