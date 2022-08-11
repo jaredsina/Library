@@ -116,7 +116,7 @@ function displayForm(){
 
     //Create input for completed property
     const completed = document.createElement("input");
-    completed.setAttribute("type","radio");
+    completed.setAttribute("type","checkbox");
     completed.setAttribute("id","completed");
     completed.setAttribute("name","completed");
 
