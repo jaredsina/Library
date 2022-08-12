@@ -15,10 +15,8 @@ function addGameToLibrary(){
     const developer = form[1].value;
     const hours = form[2].value;
     let completed=form[3].checked;
-    console.log(completed)
     let newGame = new Game(title,developer,hours,completed);
     myLibrary.unshift(newGame);
-    console.log(myLibrary); 
     hideForm();   
     displayLibrary();
 }
@@ -31,7 +29,6 @@ function deleteGame(gameTitle){
         const deletedGame = document.getElementById(gameTitle);
         main.removeChild(deletedGame);
     }
-    console.log(myLibrary)
 }
 
 function displayLibrary(){
@@ -63,7 +60,6 @@ function setCompletedStatus(gameTitle){
     }
     const gameInfo = document.getElementById(`p ${gameTitle}`);
     gameInfo.innerText=`Title: ${myLibrary[index].title}\nDeveloper: ${myLibrary[index].developer}\nHours Played: ${myLibrary[index].hours}\nCompleted: ${myLibrary[index].completed}`;
-    console.log(myLibrary);
 }
 
 function displayForm(){
@@ -90,6 +86,7 @@ function displayForm(){
     const titleLabel = document.createElement("label");
     titleLabel.innerText= "Title:";
     titleLabel.setAttribute("for","title");
+    titleLabel.setAttribute("id","titleLabel");
 
     //Create input for developer property
     const developer = document.createElement("input");
@@ -101,6 +98,7 @@ function displayForm(){
     const developerLabel = document.createElement("label");
     developerLabel.innerText = "Developer:";
     developerLabel.setAttribute("for","developer");
+    developerLabel.setAttribute("id","developerLabel");
 
     //Create input for hours played property
     const hours = document.createElement("input");
@@ -112,6 +110,7 @@ function displayForm(){
     const hoursLabel = document.createElement("label");
     hoursLabel.innerText="Hours Played:";
     hoursLabel.setAttribute("for","hours");
+    hoursLabel.setAttribute("id","hoursLabel");
 
     //Create input for completed property
     const completed = document.createElement("input");
@@ -154,8 +153,16 @@ function displayForm(){
 
 function checkForm(){
     const form = document.getElementById("new-game-form");
+    const errorMessage = document.createElement("p");
+    errorMessage.innerText = "*";
+    errorMessage.id = "error";
+    const error = document.getElementById("error")
+    if(error !== null){
+        form.removeChild(error);
+    }
     for(let i=0;i<=form.length-4;i++){
         if (!form[i].value){
+            form.insertBefore(errorMessage,form[i]);
             return
         }
     }

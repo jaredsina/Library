@@ -8,3 +8,8 @@ body{
     background-color: #112D4E;
     border-radius: 8px;
 }
+#error{
+    margin: 0;
+    display: inline;
+    color:red;
+}
