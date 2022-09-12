@@ -8,6 +8,10 @@ body{
     background-color: #112D4E;
     border-radius: 8px;
 }
+.header{
+    display: flex;
+    justify-content: space-around;
+}
 #error{
     margin: 0;
     display: inline;
